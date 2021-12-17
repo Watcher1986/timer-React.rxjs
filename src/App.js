@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     const timer$ = new Subject();
-    interval(100)
+    interval(1000)
       .pipe(takeUntil(timer$))
       .subscribe(() => {
         if (timerActive) {
@@ -35,41 +35,41 @@ function App() {
     }
   }, [click]);
 
+  const onStartStopClick = () => {
+    if (timerActive) setTime(0);
+    setTimerActive(!timerActive);
+  };
+
+  const onWaitClick = (event) => {
+    setClick((prev) => ({
+      ...click,
+      cl: event.timeStamp,
+      prevCl: prev.cl,
+    }));
+  };
+
+  const onReset = () => {
+    setTime(0);
+    setTimerActive(true);
+  };
+
   return (
-    <div className="main">
-      <div className="timersBlock">
-        <div className="clock">
+    <div className="container">
+      <div className="container_timer">
+        <div className="container_timer-clock">
           <Timer
             hours={('0' + Math.trunc(time / 3600)).slice(-2)}
             minutes={('0' + Math.trunc((time % 3600) / 60)).slice(-2)}
             seconds={('0' + ((time % 3600) % 60)).slice(-2)}
           />
         </div>
-        <div className="btnBlock">
+        <div className="container_timer-buttons">
           <Button
-            onClick={() => {
-              if (timerActive) setTime(0);
-              setTimerActive(!timerActive);
-            }}
+            onClick={onStartStopClick}
             btnName={timerActive ? 'Stop' : 'Start'}
           />
-          <Button
-            onClick={(event) => {
-              setClick((prev) => ({
-                ...click,
-                cl: event.timeStamp,
-                prevCl: prev.cl,
-              }));
-            }}
-            btnName={'Wait'}
-          />
-          <Button
-            onClick={() => {
-              setTime(0);
-              setTimerActive(true);
-            }}
-            btnName={'Reset'}
-          />
+          <Button onClick={onWaitClick} btnName={'Wait'} />
+          <Button onClick={onReset} btnName={'Reset'} />
         </div>
       </div>
     </div>

@@ -7,13 +7,13 @@ body {
   margin: 0;
 }
 
-.main {
+.container {
   display: flex;
   justify-content: center;
   margin-top: 24px;
 }
 
-.timersBlock {
+.container_timer {
   display: flex;
   flex-direction: column;
   margin: 20px;
@@ -22,7 +22,7 @@ body {
   border-radius: 10px;
 }
 
-.clock {
+.container_timer-clock {
   display: flex;
   justify-content: center;
   margin-bottom: 25px;
@@ -31,10 +31,10 @@ body {
   color: aliceblue;
 }
 
-.btnBlock {
+.container_timer-clock {
   display: flex;
 }
-.btnBlock button {
+.container_timer-buttons button {
   width: 100px;
   height: 40px;
   padding: 5px;
@@ -48,7 +48,7 @@ body {
   font-weight: bolder;
 }
 
-.btnBlock button:hover {
+.container_timer-buttons button:hover {
   background: rgb(91, 248, 227);
   color: rgb(55, 66, 65);
 }
